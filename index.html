@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ToDo List Vue.js v.3</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <!-- Start App -->
+  <div class="app_main" id="app">
+    <div class="header">
+      
+        <!-- <a href="index.html" class="logo">ToDo List</a> -->
+        <a href="login.html" class="logo">Login</a>
+        <a href="reg.html" class="logo">Registration</a>
+        <a href="grafs.html" class="logo">Statistic</a>
+        <div class="form">
+          <input type="text" v-bind:value="valueInput" v-on:input="handleInput" v-on:keypress.enter="addTask">
+          <button class="btn" v-on:click="addTask">Add a new task</button>
+          
+        </div>
+      
+    </div>
+    <div class="container">
+      
+      <h2>
+        <span>To Do</span>
+        <span class="mask-num">{{ needDoList.length }}</span>
+      </h2>
+      <ul class="mask-list">
+        <li class="limask" v-for="(mask, index) in needDoList" :key="mask.id">
+          <div class="title_task">
+            <input type="checkbox" v-on:change="doCheck(index, 'need')" />
+            <span  >{{ mask.title }}</span>
+            
+          </div>
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input type="checkbox"/>
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+          <div id="timerblock" class="temer">
+            <input  placeholder="Minutes" class="temer_in" type="text" v-bind:value="timerInput" v-on:input="handleInput2" v-on:keypress.enter="TimerRun">
+            <button  id="xaxa" class="btn temer_b" v-on:click="TimerRun(index)">Запустить</button>
+          </div>
+          
+          <button class="btn-remove" v-on:click="removeMask(index, 'need')">Remove</button>
+        </li>
+      </ul>
+      <h2>
+        <span>Done</span>
+        <span class="mask-num">{{ completeList.length }}</span>
+      </h2>
+      <ul class="mask-list complete-list">
+        <li v-for="(mask, index) in completeList" :key="mask.id">
+
+
+          <div>
+            <input type="checkbox" v-on:change="doCheck(index, 'complete')" checked>
+            <strong><span >{{ mask.title }}</span></strong>
+          </div>
+
+          <button class="btn-remove" v-on:click="removeMask(index, 'complete')">Remove</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- End App -->
+  <script src="https://cdn.jsdelivr.net/npm/vue-timers/dist/vue-timers.umd.js"></script>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ToDo List Vue.js v.3</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <!-- Start App -->
+  <div class="app_main" id="app">
+    <div class="header">
+
+      <a href="index.html" class="logo">ToDo List</a>
+
+      <a href="login.html" class="logo">Login</a>
+      <a href="reg.html" class="logo">Registration</a>
+
+
+    </div>
+    <div class="container">
+
+      <h2>
+        <span>Completed tasks</span>
+      </h2>
+      <ul class="mask-list">
+        
+        <li style="background-color: #b7f7ce;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 1</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChart"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+        <li style="background-color: #b7f7ce;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 2</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChart"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+        <li style="background-color: #b7f7ce;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 3</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChart"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+        <li style="background-color: #b7f7ce;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 4</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChart"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+        <li style="background-color: #f7bfb7;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 5</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChartRed"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+        <li style="background-color: #f7bfb7;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 6</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChartRed"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+        <li style="background-color: #f7bfb7;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 7</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChartRed"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+        <li style="background-color: #f7bfb7;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 8</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChartRed"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+        <li style="background-color: #f7bfb7;" class="limask">
+          <div style="width: 125px;" class="title_task">
+            <span>Task 9</span>
+
+          </div>
+
+          <div class="Graf">
+            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
+            <span class="foo" data-delighter>
+              <!-- <br><br><br> -->
+              <canvas class="child" id="myChartRed"></canvas>
+            </span>
+          </div>
+
+
+          <ul class="apps">
+            <li v-for="app in apps">
+              <input checked type="checkbox" />
+              <span class="">{{ app }}</span>
+            </li>
+          </ul>
+
+
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+  <!-- End App -->
+  <script src="https://cdn.jsdelivr.net/npm/vue-timers/dist/vue-timers.umd.js"></script>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="./app.js"></script>
+  <script>
+    const ctx = document.getElementById('myChart');
+    const ctx1 = document.querySelectorAll('#myChart');
+    const ctx2 = document.querySelectorAll('#myChartRed');
+    for (let j in ctx1) {
+
+      new Chart(ctx1[j], {
+        type: 'polarArea',
+        data: {
+          // labels: data.versions ,
+          labels: ['Vs-code', 'Telegram', 'Google'],
+          datasets: [{
+            label: "MINUTES",
+            // data: data_counts,
+            data: [115, 60, 30],
+          }]
+        },
+        options: {
+          responsive: true,
+
+          indexAxis: 'y',
+
+        }
+      });
+
+    }
+    for (let j in ctx2) {
+
+      new Chart(ctx2[j], {
+        type: 'polarArea',
+        data: {
+          // labels: data.versions ,
+          labels: ['Vs-code', 'Telegram', 'Google'],
+          datasets: [{
+            label: "MINUTES",
+            // data: data_counts,
+            data: [115, 600, 300],
+          }]
+        },
+        options: {
+          responsive: true,
+
+          indexAxis: 'y',
+
+        }
+      });
+
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>
