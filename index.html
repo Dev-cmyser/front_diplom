@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ToDo List Vue.js v.3</title>
+  <title>ToDo-Timer By Kirill Novgorodtsev</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
@@ -18,20 +18,22 @@
     <div class="header">
       
         <!-- <a href="index.html" class="logo">ToDo List</a> -->
-        <a href="login.html" class="logo">Login</a>
+        <nav class="header-navbar">
+        <a  href="login.html" class="logo">Login</a>
         <a href="reg.html" class="logo">Registration</a>
         <a href="grafs.html" class="logo">Statistic</a>
         <div class="form">
-          <input type="text" v-bind:value="valueInput" v-on:input="handleInput" v-on:keypress.enter="addTask">
+          <input class="form-input_m" type="text" placeholder="Write your task here" v-bind:value="valueInput" v-on:input="handleInput" v-on:keypress.enter="addTask">
           <button class="btn" v-on:click="addTask">Add a new task</button>
           
         </div>
+      </nav>
       
     </div>
     <div class="container">
       
       <h2>
-        <span>To Do</span>
+        <span>To Do - Tasks</span>
         <span class="mask-num">{{ needDoList.length }}</span>
       </h2>
       <ul class="mask-list">
@@ -56,7 +58,7 @@
         </li>
       </ul>
       <h2>
-        <span>Done</span>
+        <span>Done - Tasks</span>
         <span class="mask-num">{{ completeList.length }}</span>
       </h2>
       <ul class="mask-list complete-list">

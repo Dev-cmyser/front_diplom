@@ -1,3 +1,20 @@
+
+/*Обнуление*/
+*{padding: 0;margin: 0;border: 0;}
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box; -webkit-tap-highlight-color: transparent;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;}
+head,body{overflow-x: hidden;}
 body {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300;
@@ -33,7 +50,9 @@ h2 .mask-num {
   display: flex;
   flex-direction: column;
 }
-
+.form-input_m{
+  border-radius: 30px;
+}
 .header {
   background-color: #333;
   padding: 10px 0;
@@ -43,6 +62,7 @@ h2 .mask-num {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  border-radius: 0px 0px 30px 30px ;
 
 }
 
@@ -55,15 +75,39 @@ h2 .mask-num {
   align-items: center;
   justify-content: space-between;
 }
-
+.header-navbar{
+  display: flex;
+		align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
  .logo {
-  line-height: 50px;
+  position: relative;
+
   color: #ddd;
   font-size: 24px;
   cursor: pointer;
   margin-left: 10px;
-  text-decoration: none;
+  /* text-decoration: none; */
+  transition: ease-in 0.3s;
+ }
+.logo::before {
+  content: "";
+  width: 0;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 1px;
+  background: #ffffff;
+  transition: ease-in 0.3s;
 }
+.logo:hover::before {
+  width: 100%;
+}
+.logo:active {
+  color: #ffffff;
+}
+
  .form {
   width: 50%;
   display: flex;
@@ -75,8 +119,6 @@ h2 .mask-num {
   height: 40px;
   text-indent: 10px;
   border: 1px solid #fff;
-  border-radius: 5px;
-  border-radius: 0;
   box-sizing: border-box;
   outline: none;
   transition: 0.2s border;
@@ -97,6 +139,7 @@ h2 .mask-num {
   height: 40px;
   outline: none;
   transition: 0.2s;
+  border-radius: 30px;
 }
 
 .btn:hover {
