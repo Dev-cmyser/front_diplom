@@ -3,8 +3,8 @@ Vue.createApp({
     return {
       valueInput: '',
       timerInput: '',
-      needDoList: [],
-      completeList: [],
+      needDoList: [{title: 'Задача 1', id: 45645645},{title: 'Задача 2', id: 45645645},{title: 'Задача 3', id: 45645645}],
+      completeList: [{title: 'Задача 4', id: 45645645},{title: 'Задача 5', id: 45645645},{title: 'Задача 6', id: 45645645}],
       apps: ['Vs-code', "Telegram", "Google"],
     };
   },
@@ -94,6 +94,9 @@ Vue.createApp({
         id: Math.random()
       });
       this.valueInput = '';
+    },
+    changeLanguage() {
+      
     },
     doCheck(index, type) {
 

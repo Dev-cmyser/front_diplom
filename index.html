@@ -20,7 +20,6 @@
         <!-- <a href="index.html" class="logo">ToDo List</a> -->
         <nav class="header-navbar">
         <a  href="login.html" class="logo">Login</a>
-        <a href="reg.html" class="logo">Registration</a>
         <a href="grafs.html" class="logo">Statistic</a>
         <div class="form">
           <input class="form-input_m" type="text" placeholder="Write your task here" v-bind:value="valueInput" v-on:input="handleInput" v-on:keypress.enter="addTask">
@@ -33,7 +32,7 @@
     <div class="container">
       
       <h2>
-        <span>To Do - Tasks</span>
+        <span>To Do</span>
         <span class="mask-num">{{ needDoList.length }}</span>
       </h2>
       <ul class="mask-list">
@@ -51,23 +50,23 @@
           </ul>
           <div id="timerblock" class="temer">
             <input  placeholder="Minutes" class="temer_in" type="text" v-bind:value="timerInput" v-on:input="handleInput2" v-on:keypress.enter="TimerRun">
-            <button  id="xaxa" class="btn temer_b" v-on:click="TimerRun(index)">Запустить</button>
+            <button  id="xaxa" class="btn temer_b" v-on:click="TimerRun(index)">Start</button>
           </div>
           
           <button class="btn-remove" v-on:click="removeMask(index, 'need')">Remove</button>
         </li>
       </ul>
       <h2>
-        <span>Done - Tasks</span>
+        <span>Done</span>
         <span class="mask-num">{{ completeList.length }}</span>
       </h2>
       <ul class="mask-list complete-list">
-        <li v-for="(mask, index) in completeList" :key="mask.id">
+        <li class="delete" v-for="(mask, index) in completeList" :key="mask.id">
 
 
           <div>
-            <input type="checkbox" v-on:change="doCheck(index, 'complete')" checked>
-            <strong><span >{{ mask.title }}</span></strong>
+            
+            <strong><span class="delete2" >{{ mask.title }}</span></strong>
           </div>
 
           <button class="btn-remove" v-on:click="removeMask(index, 'complete')">Remove</button>

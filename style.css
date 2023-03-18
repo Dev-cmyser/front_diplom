@@ -17,6 +17,7 @@ head,body{overflow-x: hidden;}
 body {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300;
+  background-color: #f8f8ff;
 }
 
 h2 {
@@ -51,6 +52,10 @@ h2 .mask-num {
 }
 .form-input_m{
   border-radius: 30px;
+  
+}
+.form-input_m::placeholder{
+  color: black;
 }
 .header {
   background-color: #333;
@@ -67,6 +72,7 @@ h2 .mask-num {
 
 .mask-list{
   width: 100%;
+  color: black;
 }
 
 .container {
@@ -225,8 +231,9 @@ input[type="checkbox"]:checked + span::after{
    height: 12px;
    transition: all .2s ease;
    opacity: 1;
-   left: 4px;
-   top: calc(50% - 6px);
+   left: 2px;
+   
+   top: calc(50% - 8px);
    background-color: #4fc1de;
 }
 input[type="checkbox"]:not(:checked) + span::before{
@@ -269,6 +276,7 @@ input[type="checkbox"]:not(:checked) + span::after{
   }
 .temer_in::placeholder{
   /* transform: translateX(10px); */
+  color:  black;
 }
 
 .disable{
@@ -295,6 +303,7 @@ input[type="checkbox"]:not(:checked) + span::after{
   align-items: flex-start;
 }
 
-.delete{
 
+.delete2{
+  text-decoration: line-through;
 }
