@@ -19,11 +19,12 @@
       
         <!-- <a href="index.html" class="logo">ToDo List</a> -->
         <nav class="header-navbar">
-        <a  href="login.html" class="logo">Login</a>
-        <a href="grafs.html" class="logo">Statistic</a>
+          <a href="main.html" class="logo">Главная</a>
+        <a  href="login.html" class="logo">Войти</a>
+        <a href="grafs.html" class="logo">Статистика</a>
         <div class="form">
-          <input class="form-input_m" type="text" placeholder="Write your task here" v-bind:value="valueInput" v-on:input="handleInput" v-on:keypress.enter="addTask">
-          <button class="btn" v-on:click="addTask">Add a new task</button>
+          <input class="form-input_m" type="text" placeholder="Напишите вашу задачу здесь" v-bind:value="valueInput" v-on:input="handleInput" v-on:keypress.enter="addTask">
+          <button class="btn" v-on:click="addTask">Добавить задачу</button>
           
         </div>
       </nav>
@@ -32,7 +33,7 @@
     <div class="container">
       
       <h2>
-        <span>To Do</span>
+        <span>Задачи в работе</span>
         <span class="mask-num">{{ needDoList.length }}</span>
       </h2>
       <ul class="mask-list">
@@ -49,19 +50,19 @@
             </li>
           </ul>
           <div id="timerblock" class="temer">
-            <input  placeholder="Minutes" class="temer_in" type="text" v-bind:value="timerInput" v-on:input="handleInput2" v-on:keypress.enter="TimerRun">
-            <button  id="xaxa" class="btn temer_b" v-on:click="TimerRun(index)">Start</button>
+            <input  placeholder="Минуты" class="temer_in" type="number" v-bind:value="timerInput" v-on:input="handleInput2" v-on:keypress.enter="TimerRun">
+            <button  id="xaxa" class="btn temer_b" v-on:click="TimerRun(index)">Запустить</button>
           </div>
           
-          <button class="btn-remove" v-on:click="removeMask(index, 'need')">Remove</button>
+          <button class="btn-remove" v-on:click="removeMask(index, 'need')">Удалить</button>
         </li>
       </ul>
       <h2>
-        <span>Done</span>
+        <span>Выполненные задачи</span>
         <span class="mask-num">{{ completeList.length }}</span>
       </h2>
-      <ul class="mask-list complete-list">
-        <li class="delete" v-for="(mask, index) in completeList" :key="mask.id">
+      <ul class="mask-list  complete-list">
+        <li class="" v-for="(mask, index) in completeList" :key="mask.id">
 
 
           <div>
@@ -69,7 +70,7 @@
             <strong><span class="delete2" >{{ mask.title }}</span></strong>
           </div>
 
-          <button class="btn-remove" v-on:click="removeMask(index, 'complete')">Remove</button>
+          <button class="btn-remove" v-on:click="removeMask(index, 'complete')">Удалить</button>
         </li>
       </ul>
     </div>
