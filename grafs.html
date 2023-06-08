@@ -20,7 +20,7 @@
 
       <a href="index.html" class="logo">Приложение</a>
 
-      <a href="login.html" class="logo">Войти</a>
+      <a href="login.html" class="logo login">Войти</a>
 
 
     </div>
@@ -305,8 +305,21 @@
         }
       });
 
+    };
+
+    function getCookie(name){
+      let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+      ));
+      return matches ? decodeURIComponent(matches[1]) : undefined;
     }
 
+    if(getCookie('user')){
+
+      document.querySelector('.login').innerHTML = getCookie('user')
+    }else{
+      document.querySelector('.login').innerHTML = 'Вход'
+    }
 
 
 

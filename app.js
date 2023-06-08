@@ -3,12 +3,78 @@ Vue.createApp({
     return {
       valueInput: '',
       timerInput: '',
-      needDoList: [{title: 'Задача 1', id: 45645645},{title: 'Задача 2', id: 45645645},{title: 'Задача 3', id: 45645645}],
-      completeList: [{title: 'Задача 4', id: 45645645},{title: 'Задача 5', id: 45645645},{title: 'Задача 6', id: 45645645}],
-      apps: ['Vs-code', "Telegram", "Google"],
+      needDoList: [],
+      completeList: [],
+      apps: ["Telegram"],
+      user: this.checkData(),
+
     };
+
+  },
+  mounted() {
+    this.setneedTasks()
   },
   methods: {
+    checkData() {
+      let user = this.getCookie('user')
+      if (user) {
+        return user
+      } else {
+        return ''
+      }
+
+    },
+
+
+    setneedTasks() {
+      let user = this.getCookie('user')
+      axios.get(`http://127.0.0.1:8000/all-tasks/?user=${user}`).then((response) => {
+        console.log(response)
+        this.needDoList = response.data.filter(item => (item.is_completed == false))
+        this.completeList = response.data.filter(item => (item.is_completed == true))
+      })
+
+
+
+
+    },
+    setCookie(name, value, options = {}) {
+
+      options = {
+        path: '/',
+        // при необходимости добавьте другие значения по умолчанию
+        ...options
+      };
+
+      if (options.expires instanceof Date) {
+        options.expires = options.expires.toUTCString();
+      }
+
+      let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+      for (let optionKey in options) {
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) {
+          updatedCookie += "=" + optionValue;
+        }
+      }
+
+      document.cookie = updatedCookie;
+    },
+    deleteCookie(name) {
+      this.setCookie(name, "", {
+        'max-age': -1
+      })
+      window.location.href = "/login.html";
+    },
+    getCookie(name) {
+      let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+      ));
+      return matches ? decodeURIComponent(matches[1]) : undefined;
+    },
+
     handleInput(event) {
       this.valueInput = event.target.value;
     },
@@ -89,20 +155,57 @@ Vue.createApp({
     },
     addTask() {
       if (this.valueInput === '') { return };
-      this.needDoList.push({
-        title: this.valueInput,
-        id: Math.random()
-      });
+
+      let data = {
+        // id: 10,
+        name: this.valueInput,
+        user: {
+          username: this.user,
+        },
+        apps: this.apps,
+
+      }
+      data1 = JSON.stringify(data)
+      console.log(data1)
+      axios.post("http://127.0.0.1:8000/create-task/", data1).then((response) => {
+        console.log(response)
+        this.needDoList.push({
+          name: response.data.name,
+          id: response.data.id
+        });
+      })
+
       this.valueInput = '';
+
     },
-    changeLanguage() {
-      
-    },
+
     doCheck(index, type) {
 
       if (type === 'need') {
-        const completeMask = this.needDoList.splice(index, 1);
-        this.completeList.push(...completeMask);
+        
+        let name = this.needDoList.filter(item => (item.id === index))
+        console.log(index, type, name)
+        let data = {
+          id: index,
+          name: name[0].name,
+          user: {
+            username: this.user,
+          },
+          apps: this.apps,
+          is_completed: true,
+
+
+        }
+        data1 = JSON.stringify(data)
+        if (type === 'need') {
+          axios.post("http://127.0.0.1:8000/create-task/", data1).then((response) => {
+            console.log(response)
+          })
+        }
+        this.needDoList = this.needDoList.filter(item => (item.id !== index))
+        const completeMask = name[0]
+        console.log(completeMask)
+        this.completeList.push(completeMask);
       }
       else {
         const noCompleteMask = this.completeList.splice(index, 1);
@@ -110,9 +213,49 @@ Vue.createApp({
       }
     },
     removeMask(index, type) {
-      const toDoList = type === 'need' ? this.needDoList : this.completeList;
-      toDoList.splice(index, 1);
+      console.log(index, type)
+      if ( type === 'need') {
+        axios.delete(`http://127.0.0.1:8000/item/${index}/delete/`,).then((response) => {
+            console.log(response)
+          })
+
+        this.needDoList = this.needDoList.filter(item => (item.id !== index))
+
+
+      }else{
+        axios.delete(`http://127.0.0.1:8000/item/${index}/delete/`,).then((response) => {
+            console.log(response)
+          })
+        this.completeList = this.completeList.filter(item => (item.id !== index))
+
+
+      }
+    },
+    async getData(url = "", data = {}) {
+      // Default options are marked with *
+      const response = await fetch(url, {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      });
+      return response.json(); // parses JSON response into native JavaScript objects
+    },
+    async postData(url = "", data = {}) {
+      // Default options are marked with *
+      const response = await fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      });
+      return response.json(); // parses JSON response into native JavaScript objects
     }
+
   }
 }
 ).mount('#app');

@@ -20,7 +20,10 @@
         <!-- <a href="index.html" class="logo">ToDo List</a> -->
         <nav class="header-navbar">
           <a href="main.html" class="logo">Главная</a>
-        <a  href="login.html" class="logo">Войти</a>
+          <a v-if="user" href="login.html" class="logo">{{ user }}</a>
+          <a v-if="user" v-on:click="deleteCookie('user')"  class="logo">Выйти</a>
+          <a v-else href="login.html" class="logo">Войти</a>
+
         <a href="grafs.html" class="logo">Статистика</a>
         <div class="form">
           <input class="form-input_m" type="text" placeholder="Напишите вашу задачу здесь" v-bind:value="valueInput" v-on:input="handleInput" v-on:keypress.enter="addTask">
@@ -37,10 +40,10 @@
         <span class="mask-num">{{ needDoList.length }}</span>
       </h2>
       <ul class="mask-list">
-        <li class="limask" v-for="(mask, index) in needDoList" :key="mask.id">
+        <li class="limask" v-for="(task, index) in needDoList" :key="task.id">
           <div class="title_task">
-            <input type="checkbox" v-on:change="doCheck(index, 'need')" />
-            <span  >{{ mask.title }}</span>
+            <input type="checkbox" v-on:change="doCheck(task.id, 'need')" />
+            <span  >{{ task.name }}</span>
             
           </div>
           <ul class="apps">
@@ -54,7 +57,7 @@
             <button  id="xaxa" class="btn temer_b" v-on:click="TimerRun(index)">Запустить</button>
           </div>
           
-          <button class="btn-remove" v-on:click="removeMask(index, 'need')">Удалить</button>
+          <button class="btn-remove" v-on:click="removeMask(task.id, 'need')">Удалить</button>
         </li>
       </ul>
       <h2>
@@ -62,20 +65,21 @@
         <span class="mask-num">{{ completeList.length }}</span>
       </h2>
       <ul class="mask-list  complete-list">
-        <li class="" v-for="(mask, index) in completeList" :key="mask.id">
+        <li class="" v-for="(task, index) in completeList" :key="task.id">
 
 
           <div>
             
-            <strong><span class="delete2" >{{ mask.title }}</span></strong>
+            <strong><span class="delete2" >{{ task.name }}</span></strong>
           </div>
 
-          <button class="btn-remove" v-on:click="removeMask(index, 'complete')">Удалить</button>
+          <button class="btn-remove" v-on:click="removeMask(task.id, 'complete')">Удалить</button>
         </li>
       </ul>
     </div>
   </div>
   <!-- End App -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-timers/dist/vue-timers.umd.js"></script>
   <script src="https://unpkg.com/vue@next"></script>
   <script src="./app.js"></script>

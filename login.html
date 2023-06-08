@@ -1,83 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>ToDo-Timer By Kirill Novgorodtsev</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" href="./style.css">
+  <title>ToDo-Timer By Kirill Novgorodtsev</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="css/util.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-	
-	<div class="limiter">
-		<div class="container-login100" style="background: #333">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-49">
-						Вход
-					</span>
 
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Email  обязателен">
-						<span class="label-input100">Email</span>
-						<input class="input100" type="text" name="username" placeholder="Напишите ваш email">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
+  <div class="limiter">
+    <div class="container-login100" style="background: #333">
+      <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+        <form class="login100-form validate-form">
+          <span class="login100-form-title p-b-49">
+            Вход
+          </span>
 
-					<div class="wrap-input100 validate-input" data-validate="Пароль обязателен">
-						<span class="label-input100">Пароль</span>
-						<input class="input100" type="password" name="pass" placeholder="Напишите ваш пароль">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					
-					<div class="text-right p-t-8 p-b-31">
-						<a href="#">
-							
-						</a>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<a href="index.html" class="login100-form-btn">
-								Войти
-							</a>
-						</div>
-					</div>
+          <div class="wrap-input100 validate-input m-b-23" data-validate="Login обязателен">
+            <span class="label-input100">Login</span>
+            <input class="input100" type="text" name="username" placeholder="Напишите ваш login" id="login">
+            <span class="focus-input100" data-symbol="&#xf206;"></span>
+          </div>
 
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<span>
-							Или войти с помощью
-						</span>
-						<br>
-						<br>
-						<a href="reg.html" class="txt2">
-							Регистрация
-						</a>
-					</div>
+          <div class="wrap-input100 validate-input" data-validate="Пароль обязателен">
+            <span class="label-input100">Пароль</span>
+            <input class="input100" type="password" name="pass" placeholder="Напишите ваш пароль" id="password">
+            <span class="focus-input100" data-symbol="&#xf190;"></span>
+          </div>
 
-					
-				</form>
-			</div>
-		</div>
-	</div>
-	
+          <div class="text-right p-t-8 p-b-31">
+            <a href="#">
 
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+            </a>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn change">
+              <div class="login100-form-bgbtn"></div>
+              <button type="submit" class="login100-form-btn btn1">
+                Войти
+              </button>
+            </div>
+          </div>
+
+          <div class="txt1 text-center p-t-54 p-b-20">
+            <span>
+              Или войти с помощью
+            </span>
+            <br>
+            <br>
+            <a href="reg.html" class="txt2">
+              Регистрация
+            </a>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="dropDownSelect1"></div>
+  <script>
+    async function postData(url = "", data = {}) {
+      // Default options are marked with *
+      const response = await fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+      });
+      return response.json(); // parses JSON response into native JavaScript objects
+    }
+    function setCookie(name, value, options = {}) {
+
+      options = {
+        path: '/',
+        ...options
+      };
+
+      if (options.expires instanceof Date) {
+        options.expires = options.expires.toUTCString();
+      }
+
+      let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+      for (let optionKey in options) {
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) {
+          updatedCookie += "=" + optionValue;
+        }
+      }
+
+      document.cookie = updatedCookie;
+    }
+    const wrap = document.querySelector('.wrap-login100')
+    const button = document.querySelector('.btn1');
+    const change = document.querySelector('.change');
+    button.addEventListener('click', evt => {
+      evt.preventDefault();
+      let login = document.getElementById("login").value;
+      let password = document.getElementById("password").value;
+      console.log('click', password, login);
+
+      postData("http://127.0.0.1:8000/accounts/login", { username: login, password: password }).then((data) => {
+        console.log(data);
+        if (data.msg == 'Login Success') {
+          button.innerHTML = 'Успех!'
+          wrap.style.backgroundColor = '#4a4a4a'
+          wrap.style.cssText += 'transition: 0.9s;'
+          button.style.backgroundColor = 'green';
+          button.style.cssText += 'border:none ; transition: 0.8s;';
+          setTimeout(() => {
+            button.style.backgroundColor = '#12c0dd';
+            button.style.cssText += '#12c0d;'
+            wrap.style.backgroundColor = 'white'
+
+            button.innerHTML = "Войти"
+          }, 800);
+          console.log(1)
+
+          setCookie('user', login, { 'max-age': 3600 });
+          setTimeout(() => {
+            window.location.href = "/index.html";
+          }, 800)
+
+        } else {
+          button.innerHTML = 'Не верный логин или пароль!'
+          wrap.style.backgroundColor = '#4a4a4a'
+          wrap.style.cssText += 'transition: 0.9s;'
+          button.style.backgroundColor = 'red';
+          button.style.cssText += 'border:none ; transition: 0.8s;';
+          setTimeout(() => {
+            button.style.backgroundColor = '#12c0dd';
+            button.style.cssText += '#12c0d;'
+            wrap.style.backgroundColor = 'white'
+
+            button.innerHTML = "Войти"
+          }, 800);
+          console.log('wrong!')
+        }
+      });
+    });
+  </script>
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="js/main.js"></script>
 
 </body>
+
 </html>
