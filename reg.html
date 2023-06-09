@@ -108,7 +108,7 @@ let login = document.getElementById("login").value;
   let password2 = document.getElementById("password2").value;
   console.log('click', password, login);
       
-postData("http://127.0.0.1:8000/accounts/register", { username: login, password: password, password2: password2 }).then((data) => {
+postData("http://91.206.92.155:8007/accounts/register", { username: login, password: password, password2: password2 }).then((data) => {
   console.log(data); 
   if(data.username == login){
 button.innerHTML = 'Успех!'

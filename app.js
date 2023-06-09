@@ -28,7 +28,7 @@ Vue.createApp({
 
     setneedTasks() {
       let user = this.getCookie('user')
-      axios.get(`http://127.0.0.1:8000/all-tasks/?user=${user}`).then((response) => {
+      axios.get(`http://91.206.92.155:8007/all-tasks/?user=${user}`).then((response) => {
         console.log(response)
         this.needDoList = response.data.filter(item => (item.is_completed == false))
         this.completeList = response.data.filter(item => (item.is_completed == true))
@@ -167,7 +167,7 @@ Vue.createApp({
       }
       data1 = JSON.stringify(data)
       console.log(data1)
-      axios.post("http://127.0.0.1:8000/create-task/", data1).then((response) => {
+      axios.post("http://91.206.92.155:8007/create-task/", data1).then((response) => {
         console.log(response)
         this.needDoList.push({
           name: response.data.name,
@@ -198,7 +198,7 @@ Vue.createApp({
         }
         data1 = JSON.stringify(data)
         if (type === 'need') {
-          axios.post("http://127.0.0.1:8000/create-task/", data1).then((response) => {
+          axios.post("http://91.206.92.155:8007/create-task/", data1).then((response) => {
             console.log(response)
           })
         }
@@ -215,7 +215,7 @@ Vue.createApp({
     removeMask(index, type) {
       console.log(index, type)
       if ( type === 'need') {
-        axios.delete(`http://127.0.0.1:8000/item/${index}/delete/`,).then((response) => {
+        axios.delete(`http://91.206.92.155:8007/item/${index}/delete/`,).then((response) => {
             console.log(response)
           })
 
@@ -223,7 +223,7 @@ Vue.createApp({
 
 
       }else{
-        axios.delete(`http://127.0.0.1:8000/item/${index}/delete/`,).then((response) => {
+        axios.delete(`http://91.206.92.155:8007/item/${index}/delete/`,).then((response) => {
             console.log(response)
           })
         this.completeList = this.completeList.filter(item => (item.id !== index))
