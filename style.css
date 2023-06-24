@@ -532,3 +532,7 @@ ul li a {
 .logo2:active {
   color: #ffffff;
 }
+
+.apps_i_btn{
+  display: flex;
+}

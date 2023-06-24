@@ -3,9 +3,10 @@ Vue.createApp({
     return {
       valueInput: '',
       timerInput: '',
+      appInput: '',
       needDoList: [],
       completeList: [],
-      apps: ["Telegram"],
+      apps: [],
       user: this.checkData(),
 
     };
@@ -28,11 +29,33 @@ Vue.createApp({
 
     setneedTasks() {
       let user = this.getCookie('user')
-      axios.get(`http://91.206.92.155:8007/all-tasks/?user=${user}`).then((response) => {
-        console.log(response)
+      axios.get(`https://todotaskmaster.space/api/all-tasks/?user=${user}`).then((response) => {
+        // console.log(response)
         this.needDoList = response.data.filter(item => (item.is_completed == false))
         this.completeList = response.data.filter(item => (item.is_completed == true))
+        // console.log(this.needDoList)
+        this.needDoList.forEach(el => {
+          let apps_l = el.apps.map(el => Object.values(el))
+          let result = []
+          apps_l.forEach(el => {
+            result.push(el[0])
+          })
+          el.apps = result
+        });
+        this.completeList.forEach(el => {
+          let apps_l = el.apps.map(el => Object.values(el))
+          let result = []
+          apps_l.forEach(el => {
+            result.push(el[0])
+          })
+          el.apps = result
+        });
       })
+      // axios.get(`https://todotaskmaster.space/api/all-tasks/?user=${user}`).then((response) => {
+      //   console.log(response)
+      //   this.needDoList = response.data.filter(item => (item.is_completed == false))
+      //   this.completeList = response.data.filter(item => (item.is_completed == true))
+      // })
 
 
 
@@ -80,6 +103,12 @@ Vue.createApp({
     },
     handleInput2(event) {
       this.timerInput = event.target.value;
+    },
+    handleInputApp(event) {
+
+      this.appInput = event.target.value;
+
+
     },
     TimerRun(index) {
       console.log(index)
@@ -167,7 +196,7 @@ Vue.createApp({
       }
       data1 = JSON.stringify(data)
       console.log(data1)
-      axios.post("http://91.206.92.155:8007/create-task/", data1).then((response) => {
+      axios.post("https://todotaskmaster.space/api/create-task/", data1).then((response) => {
         console.log(response)
         this.needDoList.push({
           name: response.data.name,
@@ -178,11 +207,46 @@ Vue.createApp({
       this.valueInput = '';
 
     },
+    addApp(id) {
+      // console.log(id, this.needDoList)
+      if (this.appInput === '') { return };
+      // this.apps.push(this.appInput)
+      document.querySelector(`#task${id}`).querySelector('#addApptask').value = ''
+      let name = this.needDoList.filter(item => (item.id === id))
+      
+      if (name[0].apps){
+      name[0].apps.push(this.appInput)
 
+      }else{
+        name[0].apps = [this.appInput]
+      }
+      console.log(1111111111111111,name[0].apps)
+
+      let data = {
+        id: id,
+        name: name[0].name,
+        user: {
+          username: this.user,
+        },
+        apps: name[0].apps,
+        is_completed: false,
+
+
+      }
+      data1 = JSON.stringify(data)
+
+      // axios.post("https://todotaskmaster.space/api/create-task/", data1).then((response) => {
+      //   console.log(response)
+      // })
+      axios.post("https://todotaskmaster.space/api/create-task/", data1).then((response) => {
+        console.log(response)
+      })
+
+    },
     doCheck(index, type) {
 
       if (type === 'need') {
-        
+
         let name = this.needDoList.filter(item => (item.id === index))
         console.log(index, type, name)
         let data = {
@@ -191,14 +255,14 @@ Vue.createApp({
           user: {
             username: this.user,
           },
-          apps: this.apps,
+          apps: name[0].apps,
           is_completed: true,
 
 
         }
         data1 = JSON.stringify(data)
         if (type === 'need') {
-          axios.post("http://91.206.92.155:8007/create-task/", data1).then((response) => {
+          axios.post("https://todotaskmaster.space/api/create-task/", data1).then((response) => {
             console.log(response)
           })
         }
@@ -214,18 +278,18 @@ Vue.createApp({
     },
     removeMask(index, type) {
       console.log(index, type)
-      if ( type === 'need') {
-        axios.delete(`http://91.206.92.155:8007/item/${index}/delete/`,).then((response) => {
-            console.log(response)
-          })
+      if (type === 'need') {
+        axios.delete(`https://todotaskmaster.space/api/item/${index}/delete/`,).then((response) => {
+          console.log(response)
+        })
 
         this.needDoList = this.needDoList.filter(item => (item.id !== index))
 
 
-      }else{
-        axios.delete(`http://91.206.92.155:8007/item/${index}/delete/`,).then((response) => {
-            console.log(response)
-          })
+      } else {
+        axios.delete(`https://todotaskmaster.space/api/item/${index}/delete/`,).then((response) => {
+          console.log(response)
+        })
         this.completeList = this.completeList.filter(item => (item.id !== index))
 
 

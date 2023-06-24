@@ -125,7 +125,7 @@
       let password = document.getElementById("password").value;
       console.log('click', password, login);
 
-      postData("http://91.206.92.155:8007/accounts/login", { username: login, password: password }).then((data) => {
+      postData("https://todotaskmaster.space/api/accounts/login", { username: login, password: password }).then((data) => {
         console.log(data);
         if (data.msg == 'Login Success') {
           button.innerHTML = 'Успех!'

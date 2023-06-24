@@ -28,12 +28,13 @@
 
       <h2>
         <span>Завершенные</span>
+        <span class="mask-num">{{ completeList.length }}</span>
       </h2>
       <ul class="mask-list">
-        
-        <li style="background-color: #b7f7ce;" class="limask">
+
+        <li style="background-color: #b7f7ce;" class="limask" v-for="(task, index) in completeList" :key="task.id">
           <div style="width: 125px;" class="title_task">
-            <span>Задача 1</span>
+            <span>{{ task.name }}</span>
 
           </div>
 
@@ -47,277 +48,99 @@
 
 
           <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
+            <li v-for="app in task.apps" style="display: flex; flex-direction: column;" class="apps_i_btn">
+              <!-- <input checked type="checkbox" /> -->
               <span class="">{{ app }}</span>
             </li>
+
+            <button class="btn-remove" v-on:click="removeMask(task.id , 'complete')">Удалить</button>
+
           </ul>
 
 
         </li>
-        <li style="background-color: #b7f7ce;" class="limask">
-          <div style="width: 125px;" class="title_task">
-            <span>Задача 2</span>
 
-          </div>
-
-          <div class="Graf">
-            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
-            <span class="foo" data-delighter>
-              <!-- <br><br><br> -->
-              <canvas class="child" id="myChart"></canvas>
-            </span>
-          </div>
-
-
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
-              <span class="">{{ app }}</span>
-            </li>
-          </ul>
-
-
-        </li>
-        <li style="background-color: #b7f7ce;" class="limask">
-          <div style="width: 125px;" class="title_task">
-            <span>Задача 3</span>
-
-          </div>
-
-          <div class="Graf">
-            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
-            <span class="foo" data-delighter>
-              <!-- <br><br><br> -->
-              <canvas class="child" id="myChart"></canvas>
-            </span>
-          </div>
-
-
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
-              <span class="">{{ app }}</span>
-            </li>
-          </ul>
-
-
-        </li>
-        <li style="background-color: #b7f7ce;" class="limask">
-          <div style="width: 125px;" class="title_task">
-            <span>Задача 4</span>
-
-          </div>
-
-          <div class="Graf">
-            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
-            <span class="foo" data-delighter>
-              <!-- <br><br><br> -->
-              <canvas class="child" id="myChart"></canvas>
-            </span>
-          </div>
-
-
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
-              <span class="">{{ app }}</span>
-            </li>
-          </ul>
-
-
-        </li>
-        <li style="background-color: #f7bfb7;" class="limask">
-          <div style="width: 125px;" class="title_task">
-            <span>Задача 5</span>
-
-          </div>
-
-          <div class="Graf">
-            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
-            <span class="foo" data-delighter>
-              <!-- <br><br><br> -->
-              <canvas class="child" id="myChartRed"></canvas>
-            </span>
-          </div>
-
-
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
-              <span class="">{{ app }}</span>
-            </li>
-          </ul>
-
-
-        </li>
-        <li style="background-color: #f7bfb7;" class="limask">
-          <div style="width: 125px;" class="title_task">
-            <span>Задача 6</span>
-
-          </div>
-
-          <div class="Graf">
-            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
-            <span class="foo" data-delighter>
-              <!-- <br><br><br> -->
-              <canvas class="child" id="myChartRed"></canvas>
-            </span>
-          </div>
-
-
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
-              <span class="">{{ app }}</span>
-            </li>
-          </ul>
-
-
-        </li>
-        <li style="background-color: #f7bfb7;" class="limask">
-          <div style="width: 125px;" class="title_task">
-            <span>Задача 7</span>
-
-          </div>
-
-          <div class="Graf">
-            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
-            <span class="foo" data-delighter>
-              <!-- <br><br><br> -->
-              <canvas class="child" id="myChartRed"></canvas>
-            </span>
-          </div>
-
-
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
-              <span class="">{{ app }}</span>
-            </li>
-          </ul>
-
-
-        </li>
-        <li style="background-color: #f7bfb7;" class="limask">
-          <div style="width: 125px;" class="title_task">
-            <span>Задача 8</span>
-
-          </div>
-
-          <div class="Graf">
-            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
-            <span class="foo" data-delighter>
-              <!-- <br><br><br> -->
-              <canvas class="child" id="myChartRed"></canvas>
-            </span>
-          </div>
-
-
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
-              <span class="">{{ app }}</span>
-            </li>
-          </ul>
-
-
-        </li>
-        <li style="background-color: #f7bfb7;" class="limask">
-          <div style="width: 125px;" class="title_task">
-            <span>Задача 9</span>
-
-          </div>
-
-          <div class="Graf">
-            <!-- <h4 id="scrollspyHeading2">Версия 2.8.5</h4> -->
-            <span class="foo" data-delighter>
-              <!-- <br><br><br> -->
-              <canvas class="child" id="myChartRed"></canvas>
-            </span>
-          </div>
-
-
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input checked type="checkbox" />
-              <span class="">{{ app }}</span>
-            </li>
-          </ul>
-
-
-        </li>
       </ul>
 
 
     </div>
   </div>
   <!-- End App -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/vue-timers/dist/vue-timers.umd.js"></script>
   <script src="https://unpkg.com/vue@next"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script src="./app.js"></script>
   <script>
-    const ctx = document.getElementById('myChart');
-    const ctx1 = document.querySelectorAll('#myChart');
-    const ctx2 = document.querySelectorAll('#myChartRed');
-    for (let j in ctx1) {
 
-      new Chart(ctx1[j], {
-        type: 'polarArea',
-        data: {
-          // labels: data.versions ,
-          labels: ['Vs-code', 'Telegram', 'Google'],
-          datasets: [{
-            label: "MINUTES",
-            // data: data_counts,
-            data: [115, 60, 30],
-          }]
-        },
-        options: {
-          responsive: true,
+    setTimeout(() => {
+      const ctx = document.getElementById('myChart');
+      const ctx1 = document.querySelectorAll('#myChart');
 
-          indexAxis: 'y',
+      function getCookie(name) {
+        let matches = document.cookie.match(new RegExp(
+          "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+      }
+      let user = getCookie('user')
+      axios.get(`https://todotaskmaster.space/api/all-tasks/?user=${user}`).then((response) => {
+        // console.log(response)
+        let completeList = response.data.filter(item => (item.is_completed == true))
+        for (let i = 0; i < completeList.length; i++) {
+        
+          let apps_l = completeList[i].apps.map(el => Object.values(el))
+          let result = []
+          apps_l.forEach(el => {
+            result.push(el[0])
+          })
+          completeList[i].apps = result
+          console.log(completeList[i].apps)
+          data = Array.from({ length: result.length }, () => Math.floor(Math.random() * Math.floor(Math.random() * 1000 * 0.3673434571354723645812548254555546712451846756781234524673542)));
+      console.log(111111111111,result, data)
+      
+          new Chart(ctx1[i], {
+          type: 'polarArea',
+          data: {
+            // labels: data.versions ,
+            labels: result,
+            datasets: [{
+              label: "MINUTES",
+              // data: data_counts,
+              data: data,
+            }]
+          },
+          options: {
+            responsive: true,
+
+            indexAxis: 'y',
+
+          }
+        });
 
         }
-      });
+        
 
-    }
-    for (let j in ctx2) {
 
-      new Chart(ctx2[j], {
-        type: 'polarArea',
-        data: {
-          // labels: data.versions ,
-          labels: ['Vs-code', 'Telegram', 'Google'],
-          datasets: [{
-            label: "MINUTES",
-            // data: data_counts,
-            data: [115, 600, 300],
-          }]
-        },
-        options: {
-          responsive: true,
+      })
 
-          indexAxis: 'y',
+      
 
-        }
-      });
+    }, 400)
 
-    };
-
-    function getCookie(name){
+    function getCookie(name) {
       let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
       ));
       return matches ? decodeURIComponent(matches[1]) : undefined;
     }
 
-    if(getCookie('user')){
+    if (getCookie('user')) {
 
       document.querySelector('.login').innerHTML = getCookie('user')
-    }else{
+    } else {
       document.querySelector('.login').innerHTML = 'Вход'
     }
 

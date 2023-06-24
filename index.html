@@ -40,21 +40,28 @@
         <span class="mask-num">{{ needDoList.length }}</span>
       </h2>
       <ul class="mask-list">
-        <li class="limask" v-for="(task, index) in needDoList" :key="task.id">
-          <div class="title_task">
+        <li :id="'task' + task.id" class="limask" v-for="(task, index) in needDoList" :key="task.id">
+          <div class="title_task" >
             <input type="checkbox" v-on:change="doCheck(task.id, 'need')" />
             <span  >{{ task.name }}</span>
             
           </div>
-          <ul class="apps">
-            <li v-for="app in apps">
-              <input type="checkbox"/>
-              <span class="">{{ app }}</span>
+          <ul class="apps" >
+            <div style="flex-direction: row; display: flex; align-items: flex-end;">
+              <input id="addApptask" placeholder="Приложение" class="temer_in" v-on:input="handleInputApp" style="width: 50%; padding: 2px;
+              padding-left: 10px; " v-on:keypress.enter="addApp(task.id)">
+              <button style="margin-left: 5px ; height: 23px;  "  id="xaxa" class="btn temer_b" v-on:click="addApp(task.id)">Добавить</button>
+            </div>
+            
+
+            <li v-for="app in task.apps" style="line-height:3px; margin-top: 10px;;">
+              <!-- <input type="checkbox"/> -->
+              <span style="font-style: bold; font-size: 20px;" class="">{{ app }}</span>
             </li>
           </ul>
           <div id="timerblock" class="temer">
             <input  placeholder="Минуты" class="temer_in" type="number" v-bind:value="timerInput" v-on:input="handleInput2" v-on:keypress.enter="TimerRun">
-            <button  id="xaxa" class="btn temer_b" v-on:click="TimerRun(index)">Запустить</button>
+            <button style="margin: 0;"  id="xaxa" class="btn temer_b" v-on:click="TimerRun(index)">Запустить</button>
           </div>
           
           <button class="btn-remove" v-on:click="removeMask(task.id, 'need')">Удалить</button>
@@ -73,7 +80,7 @@
             <strong><span class="delete2" >{{ task.name }}</span></strong>
           </div>
 
-          <button class="btn-remove" v-on:click="removeMask(task.id, 'complete')">Удалить</button>
+          <button class="btn-remove" v-on:click="removeMask(task.id , 'complete')">Удалить</button>
         </li>
       </ul>
     </div>
